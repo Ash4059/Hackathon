@@ -1,11 +1,11 @@
 from tkinter import *
 from PIL import ImageGrab
+from tkinter import messagebox
 
 
 global count
 count =0
-class App():
-    
+class App(): 
     def reset(self):
         global count
         count=1
@@ -22,9 +22,7 @@ class App():
     def stop(self):
         global count
         count=1
-    def Screenshot(self):
-        Image=ImageGrab.grab()   
-        Image.save(r"C:\Users\jaisw\OneDrive\Desktop\python\Hackathon\screen.png") 
+     
         
     def timer(self):
         global count
@@ -61,10 +59,17 @@ class App():
             self.t.set(self.d)
             if(count==0):
                 self.root.after(930,self.start_timer)
-            
+    def callback(self):
+        if messagebox.askokcancel("Quit", "Do you really wish to quit?"):
+            def Screenshot(self):
+                Image=ImageGrab.grab()   
+                Image.save(r"C:\Users\jaisw\OneDrive\Desktop\python\Hackathon\screen.png")
+            self.root.destroy()
+        
         
     def __init__(self):
         self.root=Tk()
+        self.root.protocol("WM_DELETE_WINDOW", self.callback)
         self.root.title("Stop Watch")
         self.root.geometry("600x500")
         self.t = StringVar()
@@ -75,12 +80,10 @@ class App():
         self.bt1 = Button(self.root,text="Start",command=self.start,font=("Courier 12 bold"))
         self.bt2 = Button(self.root,text="Stop",command=self.stop,font=("Courier 12 bold"))
         self.bt3 = Button(self.root,text="Reset",command=self.reset,font=("Courier 12 bold"))
-        self.bt4=Button(self.root,text="Take ScreenShot",command=self.Screenshot,font=("Courier 12 bold"))
         self.lb.place(x=160,y=10)
         self.bt1.place(x=130,y=100)
         self.bt2.place(x=255,y=100)
         self.bt3.place(x=370,y=100)
-        self.bt4.place(x=240,y=250)
         self.root.mainloop()
     
 
