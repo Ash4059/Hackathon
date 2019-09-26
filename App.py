@@ -23,7 +23,7 @@ class App():
         global count
         count=1
     def Screenshot(self):
-        Image=ImageGrab.grab(bbox=(0,0,1000,700))   
+        Image=ImageGrab.grab()   
         Image.save(r"C:\Users\jaisw\OneDrive\Desktop\python\Hackathon\screen.png") 
         
     def timer(self):
@@ -69,6 +69,7 @@ class App():
         self.root.geometry("600x500")
         self.t = StringVar()
         self.t.set("00:00:00")
+        self.root.configure(background='blue')
         self.lb = Label(self.root,textvariable=self.t)
         self.lb.config(font=("Courier 40 bold"))                
         self.bt1 = Button(self.root,text="Start",command=self.start,font=("Courier 12 bold"))
